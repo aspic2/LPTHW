@@ -1,0 +1,120 @@
+LPTHW - 11/15/2016 - ex. 22
+
+command line stuff:
+    cd "Folder\Folder"
+		    Change directory. this is how you get around
+
+		cd..
+				back out one folder
+
+		C:, or D:, etc.
+		    Change your drive
+
+		dir
+				show all folders and files in the current directory
+
+		python
+				initiate python in your shell. this also prefaces calls to run script
+
+		python -m pydoc <name>
+				look something up in pydoc from the command line
+
+		quit()
+				exit python or whatever program you are in
+
+		mkdir
+				creates a folder in the current directory
+
+-------------------------------------------------
+
+python commands and input:
+
+		print()
+				outputs info to the screen
+
+		#
+				comments out the following line of text
+
+		%
+				modulo. finds the remainder of a number. if % == 0, number is even
+				can also function as a string formatter, usually followed by a letter
+
+		%s
+				string formatter. Used as a placeholder within a string.
+
+		%d
+				number formatter. Used a placeholder within a string.
+
+		%r
+		 		raw formatter. Returns value exactly as written in python. Used as a
+				placeholder in a string.
+
+		round(number [, ndigits])
+				rounds a floating point number to the decimals indicated. default is 0.
+
+		\
+				escape character. used to print exceptional characters in Python
+				ex. print("He said \"Hello\"") will print the quotes around Hello
+
+		\n
+				print new line. Python recognizes this within strings
+
+		input("optional text")
+				prompts user for some sort of input. prints the string inside, if one.
+
+		print("print something", print_variable, end='')
+				how to print text, a variable, and keep from returning a new line
+
+		pydoc [function], or python -m pydoc [function]
+				brings up python documentation
+
+		argv
+				arguments put in the command line when prompting a script.
+				ex. script, file1, file2 = argv
+
+		from module import module
+				used at the beginning of a script to add additional features
+
+		open(filename, ['w'])
+				opens a file for reading 'r', writing 'w', etc. access in your script
+				common values:
+						'r' reading (default)
+						'w' writing, truncating file
+						'x' exclusive creation
+						'a' writing, appending
+						'b' binary mode
+						't' text mode (default)
+						'+' updating (reading and writing)
+
+		filename.read()
+				gets the content from a file. usually wrapped in print function
+
+		filename.truncate()
+				deletes previous values in file
+
+		filename.close()
+				closes the opened file, a good habit for when you finish with files
+
+		filename.write([thing_to_write])
+				write to a file. can be a string or variable
+
+		:
+				kicks off functions and groups of code (if statements, for ex)
+
+		def function(<args>):
+				format for making a function. args is optional
+
+		*args
+				packages args for functions. they need to be unpacked (defined) within function.
+
+		filename.seek(0)
+				finds specific byte in file. 0 resets to beginning.
+
+		filename.readline()
+				reads line of file from current point, incrementing by one with each call
+
+		+=
+				increment symbol. ex. count += 1 is same as count = count +1
+
+		return
+				assigns value of function. also ends function
