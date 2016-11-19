@@ -79,3 +79,7 @@ call random list object. Have user input answer
 
 return value of list object
 '''
+
+def NOT_True():
+    not_false = True
+    not_true = False
