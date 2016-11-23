@@ -1,6 +1,8 @@
 '''
 Program to test my knowledge of boolean logic
 Bug-free! Let me know if you notice any issues!
+Fixes to make:
+1) Find other way to use question variable.
 '''
 from sys import exit
 import random
@@ -64,7 +66,10 @@ def listmaker(soon_to_be_list):
 #define new list of keys from logic_dict dictionary
 logic_list = listmaker(logic_dict)
 
+#declare global var to be called in function logic_test()
+question = None
 def questionnaire():
+    global question
     #pulls value from logic_list at a random index
     question = random.choice(logic_list)
     #print question. print new line
@@ -121,7 +126,7 @@ def logic_test():
         #request prompt and process it using promptmaker function
         prompt = promptmaker()
         #print answer to the screen. mostly for debugging
-        #deactivated code: print(answer)
+        print(logic_dict[question])
         #logic for if answer is correct or incorrect.
         if answer == prompt:
             print("That is correct!")
