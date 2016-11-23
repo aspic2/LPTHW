@@ -1,11 +1,10 @@
-#Program to test my knowledge of boolean logic
-
+'''
+Program to test my knowledge of boolean logic
+Bug-free! Let me know if you notice any issues!
+#future edits: 1) make promptmaker function less exploitable.
+2) Add real ending to game
+'''
 import random
-
-#error.
-
-
-
 
 logic_dict = {
 #NOT_True = {
@@ -55,62 +54,85 @@ logic_dict = {
 '0 == 0': True
 }
 
-
+#function. takes a dictionary as argument and makes the dictionary keys a list.
+#dictionary keys are now indexed and able to be called randomly
 def listmaker(soon_to_be_list):
     new_list = []
     for key in soon_to_be_list:
         new_list.append(key)
     return new_list
 
+#define new list of keys from logic_dict dictionary
 logic_list = listmaker(logic_dict)
 
+#function. prompts user for their answer.
 def promptmaker():
     prompt = (input("Is this 'True' or 'False'?\n> "))
-    #print(prompt)
+    #makes input all lowercase. Facilitates matching
     prompt = prompt.lower()
+    #redefine prompt as 't' if there's a t in the answer or 'f' if there's an f
+    #could be exploited, but also allows for misspelled answers to be evaluated
     if 't' in prompt:
         prompt = 't'
     elif 'f' in prompt:
         prompt = 'f'
     else:
         print("Error with prompt value. Please try again.")
+        promptmaker()
     return prompt
 
 def questionnaire():
+    #pulls value from logic_list at a random index
     question = random.choice(logic_list)
+    #print question. print new line
     print(question,"\n")
-    #print(question in logic_dict, "\n\n")
-    if (question in logic_dict) == True:
-        question = 't'
-    elif (question in logic_dict) == False:
-        question = 'f'
+    #look up question variable as key in logic_dict. compare value found
+    #render answer as 't' or 'f' for matching with prompt. Or print error.
+    if logic_dict[question] == True:
+        answer = 't'
+    elif logic_dict[question] == False:
+        answer = 'f'
     else:
         print("Error with dictionary values")
-        question = None
-    return question
+        answer = None
+    return answer
 
+#main function. starts game and references other functions
 def logic_test():
     print("Let's play a logic game. Answer these questions as best you can.")
+    #initialize variables. gameround or turns can be removed. redundant.
     turns = 7
     points = 0
     gameround = 1
+    #Run thr game until there are no turns left
     while turns > 0:
+        #print current round
         print("\n\nRound", gameround)
-        question = questionnaire()
+        #get a question value from questionnaire function
+        answer = questionnaire()
+        #request prompt and process it using promptmaker function
         prompt = promptmaker()
-        print(question)
-        if question == prompt:
+        #print answer to the screen. mostly for debugging
+        print(answer)
+        #logic for if answer is correct or incorrect.
+        if answer == prompt:
             print("That is correct!")
+            #increment values accordingly
             points += 1
             turns -= 1
             gameround += 1
+            #display player's standing in the game
             print(turns, "turns left\n", points, "points")
         else:
             print("Sorry, that is incorrect.")
-            print(question, "is not", prompt)
+            print(answer, "is not", prompt)
+            #increment all but points.
             turns -= 1
             gameround += 1
             print(turns, "turns left\n", points, "points")
+    print("Thanks for playing! Here's your standing:\n",
+    (gameround - 1), "rounds", "\n", points, "points")
+
 
 
 
