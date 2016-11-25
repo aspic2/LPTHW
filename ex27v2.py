@@ -2,7 +2,7 @@
 Program to test my knowledge of boolean logic
 Bug-free! Let me know if you notice any issues!
 Fixes to make:
-1) Find other way to use question variable.
+1) Find way to use question variable without making global.
 '''
 from sys import exit
 import random
@@ -98,14 +98,14 @@ def promptmaker():
         prompt = 't'
     elif prompt =='false':
         prompt = 'f'
-    elif prompt =='Q' or prompt == 'q':
-        end_game("Quitting game...")
+    elif prompt =='q':
+        endgame("Quitting game...")
     else:
         print("Input not recognized. Please try again or enter Q to quit.")
         promptmaker()
     return prompt
 
-def end_game(endmessage):
+def endgame(endmessage):
     print(endmessage, "\nThanks for playing!")
     exit(0)
 
@@ -143,7 +143,7 @@ def logic_test():
             turns -= 1
             gameround += 1
             print("%d turns left\n%d points" % (turns, points))
-    end_game("---------\nHere's your standing:\n%d rounds\n%d points"\
+    endgame("---------\nHere's how you did:\n%d rounds\n%d points"\
     % (gameround - 1, points))
 
 
