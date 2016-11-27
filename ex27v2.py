@@ -66,6 +66,8 @@ def listmaker(soon_to_be_list):
 #define new list of keys from logic_dict dictionary
 logic_list = listmaker(logic_dict)
 
+
+#since questionnaire() value will be truncated (to 't' or 'f') in function
 #declare global var to be called in function logic_test()
 question = None
 def questionnaire():
@@ -90,8 +92,8 @@ def promptmaker():
     prompt = (input("Is this 'True' or 'False'?\n> "))
     #makes input all lowercase. Facilitates matching
     prompt = prompt.lower()
-    #redefine prompt as 't' if there's a t in the answer or 'f' if there's an f
-    #could be exploited, but also allows for misspelled answers to be evaluated
+    #redefine prompt. 't' and 'f' will be evaluated against dict values.
+    # 'q' ends the game. anything else re-prompts user for input.
     if prompt == 't' or prompt == 'f':
         pass
     elif prompt == 'true':
@@ -113,7 +115,7 @@ def endgame(endmessage):
 def logic_test():
     print("Let's play a logic game. Try to answer these questions.",
     "\nEnter Q at any time to quit.")
-    #initialize variables. gameround or turns can be removed. redundant.
+    #initialize variables. gameround or turns can be removed as they are redundant.
     turns = 7
     points = 0
     gameround = 1
@@ -135,7 +137,7 @@ def logic_test():
             turns -= 1
             gameround += 1
             #display player's standing in the game
-            print("%d turns left\n%d points" % (turns, points))
+            print("%d turn(s) left\n%d points" % (turns, points))
         else:
             print("Sorry, that is incorrect.")
             #deactivated code: print(answer, "is not", prompt)
