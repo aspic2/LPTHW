@@ -1,9 +1,9 @@
-#basic command line prompts
+#basic command line prompts quiz
 #design a quiz for these, one that determines your OS
 
 import platform
 import random
-
+import sys
 
 windows_commands = {
 'pwd': 'print working directory',
@@ -55,21 +55,79 @@ mac_commands = {
 'sudo': 'DANGER! become super user root DANGER!'
 }
 
-def what_os():
+def finished(reason):
+    print(reason, "\n", "Thanks for playing!")
+    sys.exit(0)
+
+
+def which_os():
     system = platform.system()
     system.lower()
     return system
 
-print(what_os())
+print(which_os())
 
-def sort_the_dict(opsys):
-    promptlist = []
-    if opsys == 'Windows':
+def proper_dict(x):
+    if x == 'Windows':
         dictionary = windows_commands
     else:
         dictionary = mac_commands
-    for key in dictionary:
-        promptlist.append(key)
-    return promptlist
+    return dictionary
 
-print(sort_the_dict(what_os()))
+session_dict = proper_dict(which_os())
+
+def listmaker(dictionary):
+    newlist = []
+    for key in dictionary:
+        newlist.append(key)
+    return newlist
+
+command_list = listmaker(session_dict)
+
+
+def user_input():
+    response = input("> ")
+    if response == 'q':
+        finished("User quit")
+    else:
+        return response
+
+def honesty():
+    resp = input("> ")
+    resp.lower()
+    if resp == 'y' or resp == 'n':
+        pass
+    elif resp =='yes':
+        resp = 'y'
+    elif resp == 'no':
+        resp = 'n'
+    else:
+        print("invalid input. please try again.")
+        honesty()
+    return resp
+
+#variable source is a list from which to choose questions
+def questions(source):
+    print("No quiz this time. Just iterate through the answers.")
+    turns = 5
+    points = 0
+    while turns > 0:
+        current_question = random.choice(source)
+        print("What does this command do?", "\n", current_question)
+        user_input()
+        print(session_dict[current_question])
+        print("Are you correct?", "\n \n \n")
+        honesty()
+        if honesty() == 'yes':
+            points += 1
+        else:
+            print("Thanks for your honesty. Still, you don't get points.")
+
+        turns -= 1
+        print("%d turns left" % turns)
+    print("Nice work. Here's your score. \n")
+    print("%d points over %d turns." % (points, turns))
+    finished("End of game")
+
+
+questions(command_list)
