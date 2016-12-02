@@ -79,9 +79,9 @@ def questionnaire():
     #look up question variable as key in logic_dict. compare value found
     #render answer as 't' or 'f' for matching with prompt. Or print error.
     if logic_dict[question] == True:
-        answer = 't'
+        answer = 'TRUE'
     elif logic_dict[question] == False:
-        answer = 'f'
+        answer = 'FALSE'
     else:
         print("Error with dictionary values")
         answer = None
@@ -90,17 +90,16 @@ def questionnaire():
 #function. prompts user for their answer.
 def promptmaker():
     prompt = (input("Is this 'True' or 'False'?\n> "))
-    #makes input all lowercase. Facilitates matching
-    prompt = prompt.lower()
-    #redefine prompt. 't' and 'f' will be evaluated against dict values.
-    # 'q' ends the game. anything else re-prompts user for input.
-    if prompt == 't' or prompt == 'f':
+    #standardize inputs to match with answer from questionnaire()
+    # 'q' ends the game. unrecognized values re-prompts user for input.
+    prompt = prompt.upper()
+    if prompt == 'TRUE' or prompt == 'FALSE':
         pass
-    elif prompt == 'true':
-        prompt = 't'
-    elif prompt =='false':
-        prompt = 'f'
-    elif prompt =='q':
+    elif prompt == 'T':
+        prompt = 'TRUE'
+    elif prompt =='F':
+        prompt = 'FALSE'
+    elif prompt =='Q':
         endgame("Quitting game...")
     else:
         print("Input not recognized. Please try again or enter Q to quit.")
@@ -129,7 +128,6 @@ def logic_test():
         prompt = promptmaker()
         #print answer to the screen. mostly for debugging
         print(logic_dict[question])
-        #logic for if answer is correct or incorrect.
         if answer == prompt:
             print("That is correct!")
             #increment values accordingly
