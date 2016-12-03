@@ -56,7 +56,7 @@ mac_commands = {
 }
 
 def finished(reason):
-    print(reason, "\n", "Thanks for playing!")
+    print(reason, "\nThanks for playing!")
     sys.exit(0)
 
 
@@ -117,6 +117,7 @@ def questions(source):
         current_question = random.choice(source)
         print("What does this command do?", "\n", current_question)
         user_input()
+        print("The answer is:")
         print(session_dict[current_question])
         print("Are you correct?", "\n \n \n")
         turns -= 1
