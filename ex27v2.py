@@ -148,5 +148,5 @@ def logic_test():
 
 
 
-
-logic_test()
+#run the test
+#logic_test()
