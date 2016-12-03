@@ -94,9 +94,11 @@ def user_input():
 
 def honesty():
     resp = input("> ")
-    resp.lower()
+    resp = resp.lower()
     if resp == 'y' or resp == 'n':
         pass
+    elif resp == 'q':
+        finished("User quit")
     elif resp =='yes':
         resp = 'y'
     elif resp == 'no':
@@ -117,14 +119,16 @@ def questions(source):
         user_input()
         print(session_dict[current_question])
         print("Are you correct?", "\n \n \n")
+        turns -= 1
+        '''
         honesty()
-        if honesty() == 'yes':
+        if honesty() == 'y':
             points += 1
         else:
             print("Thanks for your honesty. Still, you don't get points.")
-
         turns -= 1
         print("%d turns left" % turns)
+        '''
     print("Nice work. Here's your score. \n")
     print("%d points over %d turns." % (points, turns))
     finished("End of game")
