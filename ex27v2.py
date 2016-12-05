@@ -74,10 +74,7 @@ def questionnaire():
     global question
     #pulls value from logic_list at a random index
     question = random.choice(logic_list)
-    #print question. print new line
     print(question,"\n")
-    #look up question variable as key in logic_dict. compare value found
-    #render answer as 't' or 'f' for matching with prompt. Or print error.
     if logic_dict[question] == True:
         answer = 'TRUE'
     elif logic_dict[question] == False:
@@ -91,7 +88,7 @@ def questionnaire():
 def promptmaker():
     prompt = (input("Is this 'True' or 'False'?\n> "))
     #standardize inputs to match with answer from questionnaire()
-    # 'q' ends the game. unrecognized values re-prompts user for input.
+    # 'Q' ends the game. unrecognized values re-prompts user for input.
     prompt = prompt.upper()
     if prompt == 'TRUE' or prompt == 'FALSE':
         pass
@@ -118,9 +115,7 @@ def logic_test():
     turns = 7
     points = 0
     gameround = 1
-    #Run the game until there are no turns left
     while turns > 0:
-        #print current round
         print("\n\n--------\nRound", gameround)
         #get a question value from questionnaire function
         answer = questionnaire()
@@ -130,19 +125,14 @@ def logic_test():
         print(logic_dict[question])
         if answer == prompt:
             print("That is correct!")
-            #increment values accordingly
             points += 1
-            turns -= 1
-            gameround += 1
-            #display player's standing in the game
-            print("%d turn(s) left\n%d points" % (turns, points))
         else:
             print("Sorry, that is incorrect.")
             #deactivated code: print(answer, "is not", prompt)
-            #increment all but points.
-            turns -= 1
-            gameround += 1
-            print("%d turns left\n%d points" % (turns, points))
+        turns -= 1
+        gameround += 1
+        #display player's standing in the game
+        print("%d turn(s) left\n%d points" % (turns, points))
     endgame("---------\nHere's how you did:\n%d rounds\n%d points"\
     % (gameround - 1, points))
 
