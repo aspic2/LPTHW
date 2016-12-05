@@ -64,4 +64,5 @@ def flashcards():
         turns -= 1
     ex27v2.endgame("Out of turns")
 
-flashcards()
+if __name__ == '__main__':
+    flashcards()

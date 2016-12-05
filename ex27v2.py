@@ -139,4 +139,5 @@ def logic_test():
 
 
 #run the test
-#logic_test()
+if __name__ == '__main__':
+    logic_test()
