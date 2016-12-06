@@ -1,3 +1,13 @@
+#Zed's quiz on OOP syntax
+'''
+Things to revise:
+1) fix 'gameround' logic in while block. Currently stops only at multiples of 6.
+2) Better organization of sections. Callable functions, maybe. (or classes)
+3) write a Quit function besides CTRL-D
+4) Parser to grade user input and turn into game with points system
+'''
+
+
 import random
 from urllib.request import urlopen
 import sys
