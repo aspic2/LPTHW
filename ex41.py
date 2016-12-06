@@ -49,7 +49,7 @@ def answer_this():
     if response == 'q':
         ex27v2.endgame("User quit")
     else:
-        pass
+        return response
 
 def flashcards():
     print("Use this as a chance to test your OOP knowledge.")
@@ -60,7 +60,8 @@ def flashcards():
         flash = random.choice(oop_list)
         print(flash)
         answer_this()
-        print("-" * 5, "\nHere is the correct answer:", "\n\b", oop_phrases[flash])
+        print("-" * 5, "\nHere is the correct answer:", 
+        "\n%s" % oop_phrases[flash])
         turns -= 1
     ex27v2.endgame("Out of turns")
 
