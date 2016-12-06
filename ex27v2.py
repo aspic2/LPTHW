@@ -94,9 +94,9 @@ def promptmaker():
         pass
     elif prompt == 'T':
         prompt = 'TRUE'
-    elif prompt =='F':
+    elif prompt == 'F':
         prompt = 'FALSE'
-    elif prompt =='Q':
+    elif prompt == 'Q':
         endgame("Quitting game...")
     else:
         print("Input not recognized. Please try again or enter Q to quit.")
