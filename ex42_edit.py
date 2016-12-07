@@ -8,6 +8,7 @@ class Animal(object):
         while self.lifespan > 0:
             self.lifespan -= 1
             return True
+        return False
 
 ##Dog is-a Animal
 class Dog(Animal):
@@ -90,5 +91,11 @@ harry = Halibut()
 
 taz = Animal(10)
 print("Taz's lifespan is %d years" % taz.lifespan)
-taz.isalive()
+print("Is Taz alive?", taz.isalive())
 print("Now Taz's lifespan is %d years" % taz.lifespan)
+
+print(mary.name)
+
+satan.lifespan = 0
+print("Satan's lifespan is %d years." % satan.lifespan)
+print("Is Satan alive?", satan.isalive())
