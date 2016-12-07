@@ -51,19 +51,19 @@ def answer_this():
     else:
         return response
 
-def flashcards():
+def flashcards(x):
     print("Use this as a chance to test your OOP knowledge.")
-    turns = 5
+    turns = x
     while turns > 0:
         print("-" * 15, "\nTurns left: %d\
         \nWhat is the plain English meaning of this?" % turns)
         flash = random.choice(oop_list)
         print(flash)
         answer_this()
-        print("-" * 5, "\nHere is the correct answer:", 
+        print("-" * 5, "\nHere is the correct answer:",
         "\n%s" % oop_phrases[flash])
         turns -= 1
     ex27v2.endgame("Out of turns")
 
 if __name__ == '__main__':
-    flashcards()
+    flashcards(5)
