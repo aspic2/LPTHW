@@ -30,9 +30,9 @@ keywords_dict = {
 'raise': 	'Raise an exception when things go wrong. 	raise ValueError("No")',
 'return': 	'Exit the function with a return value. 	def X(): return Y',
 'try': 	'Try this block, and if exception, go to except. 	try: pass',
-'while' 	'While loop. 	while X: pass',
-'with' 	'With an expression as a variable do. 	with X as Y: pass',
-'yield' 	'Pause here and return to caller. 	def X(): yield Y; X().next()'
+'while': 	'While loop. 	while X: pass',
+'with': 	'With an expression as a variable do. 	with X as Y: pass',
+'yield': 	'Pause here and return to caller. 	def X(): yield Y; X().next()'
 }
 
 data_types_dict = {
@@ -43,12 +43,12 @@ data_types_dict = {
 'numbers': 	'Stores integers. 	i = 100',
 'floats': 	'Stores decimals. 	i = 10.389',
 'lists': 	'Stores a list of things. 	j = [1,2,3,4]',
-'dicts': 	'Stores a key=value mapping of things. 	e = {'x': 1, 'y': 2}'
+'dicts': 	"Stores a key=value mapping of things. 	e = {'x': 1, 'y': 2}"
 }
 
 string_escape_sequences_dict = {
-'''\\''': 	'Backslash'',
-'\\\'': 	'Single-quote',
+'\\': 	'Backslash',
+"\\'": 	'Single-quote',
 '\"':	'Double-quote',
 '\\a': 	'Bell',
 '\\b': 	'Backspace',
@@ -59,18 +59,19 @@ string_escape_sequences_dict = {
 '\\v': 	'Vertical tab'
 }
 
+
 string_format_dict = {
 '%d': 	'Decimal integers (not floating point). 	"%d" % 45 == \'45\'',
 '%i': 	'Same as %d. 	"%i" % 45 == \'45\'',
 '%o': 	'Octal number. 	"%o" % 1000 == \'1750\'',
-'%u': 	'Unsigned decimal. 	"%u" % -1000 == \'-1000\',
+'%u': 	'Unsigned decimal. 	"%u" % -1000 == \'-1000\'',
 '%x': 	'Hexadecimal lowercase. 	"%x" % 1000 == \'3e8\'',
 '%X': 	'Hexadecimal uppercase. 	"%X" % 1000 == \'3E8\'',
 '%e': 	'Exponential notation, lowercase \'e\'. 	"%e" % 1000 == \'1.000000e+03\'',
-'%E': 	'Exponential notation, uppercase 'E'. 	"%E" % 1000 == '1.000000E+03'',
-'%f': 	'Floating point real number. 	"%f" % 10.34 == '10.340000'',
-'%F': 	'Same as %f. 	"%F" % 10.34 == '10.340000'',
-'%g': 	'Either %f or %e, whichever is shorter. 	"%g" % 10.34 == '10.34'',
+'%E': 	'Exponential notation, uppercase \'E\'. 	"%E" % 1000 == \'1.000000E+03\'',
+'%f': 	'Floating point real number. 	"%f" % 10.34 == \'10.340000\'',
+'%F': 	'Same as %f. 	"%F" % 10.34 == \'10.340000\'',
+'%g': 	'Either %f or %e, whichever is shorter. 	"%g" % 10.34 == \'10.34\'',
 '%G': 	'Same as %g but uppercase. 	"%G" % 10.34 == '10.34'',
 '%c': 	'Character format. 	"%c" % 34 == '"'',
 '%r': 	'Repr format (debugging format). 	"%r" % int == "<type 'int'>"',
@@ -110,3 +111,9 @@ operators_dict = {
 '%=': 	'Modulus assign 	x = 1; x %= 2',
 '**=': 	'Power assign 	x = 1; x **= 2'
 }
+
+print(keywords_dict)
+print(data_types_dict)
+print(string_escape_sequences_dict)
+print(string_format_dict)
+print(operators_dict)
