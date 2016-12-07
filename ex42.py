@@ -1,6 +1,6 @@
 ## Animal is-a object (yes, sort of confusing) look at the extra credit
 class Animal(object):
-    phrases
+    pass
 
 ##Dog is-a Animal
 class Dog(Animal):
@@ -74,5 +74,3 @@ crouse = Salmon()
 
 ## harry is-a Halibut, which is-a Fish
 harry = Halibut()
-
-

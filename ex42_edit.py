@@ -1,6 +1,13 @@
 ## Animal is-a object (yes, sort of confusing) look at the extra credit
 class Animal(object):
-    pass
+
+    def __init__(self, lifespan):
+        self.lifespan = lifespan
+
+    def isalive(self):
+        while self.lifespan > 0:
+            self.lifespan -= 1
+            return True
 
 ##Dog is-a Animal
 class Dog(Animal):
@@ -8,6 +15,9 @@ class Dog(Animal):
     def __init__(self, name):
         ##Dog has-a name
         self.name = name
+
+    def bark():
+        print("Woof")
 
 ##Cat is-a Animal
 class Cat(Animal):
@@ -35,7 +45,7 @@ class Employee(Person):
         ##?? hmm, what is this strange magic?
         ## Employee overrides Person name attribute.
         super(Employee, self).__init__(name)
-        ##??
+        ## Employee has-a salary
         self.salary = salary
 
 ##Fish is-a object
@@ -76,3 +86,9 @@ crouse = Salmon()
 
 ## harry is-a Halibut, which is-a Fish
 harry = Halibut()
+
+
+taz = Animal(10)
+print("Taz's lifespan is %d years" % taz.lifespan)
+taz.isalive()
+print("Now Taz's lifespan is %d years" % taz.lifespan)
