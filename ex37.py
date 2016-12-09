@@ -1,5 +1,7 @@
 #new game to memorize symbols from ex37
 #definitely not finished. I haven't even set up all the dictionaries properly
+import ex27v2
+
 
 keywords_dict = {
 'and': 'Logical and. True and False == False',
@@ -76,7 +78,7 @@ string_format_dict = {
 '%c': 'Character format. "%c" % 34 == \'"\'',
 '%r': 'Repr format (debugging format). "%r" % int == "<type \'int\'>"',
 '%s': 'String format. "%s there" % \'hi\' == \'hi there\'',
-'%%': 'A percent sign. "%g%%" % 10.34 == '10.34%''
+'%%': 'A percent sign. "%g%%" % 10.34 == \'10.34%\''
 }
 
 operators_dict = {
@@ -111,9 +113,3 @@ operators_dict = {
 '%=': 'Modulus assign. x = 1; x %= 2',
 '**=': 'Power assign. x = 1; x **= 2'
 }
-
-print(keywords_dict)
-print(data_types_dict)
-print(string_escape_sequences_dict)
-print(string_format_dict)
-print(operators_dict)
