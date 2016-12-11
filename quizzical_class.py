@@ -15,62 +15,64 @@
 '''
 
 
-from ex37 import full_dict
+
+import ex37
 import random
 from sys import exit
 
 
-session_dict = full_dict
+class QuizInit(object):
 
-def listmaker(source_dict):
-    newlist = []
-    for key in source_dict:
-        newlist.append(key)
-    return newlist
+    def __init__(self, session_dict):
+        self.session_dict = session_dict
 
-sessionlist = listmaker(session_dict)
+    def listmaker(self):
+        self.source_dict = self.session_dict
+        self.newlist = []
+        for key in self.source_dict:
+            self.newlist.append(key)
+        return self.newlist
 
-question = None
+    def questionmaker(self,somelist):
+        self.question = random.choice(self.somelist)
+        question = self.question
+        print("Answer/Define this:")
+        print("'", question, "'")
+        return question
 
-def questionmaker(x):
-    global question
-    question = random.choice(x)
-    print(question)
-    return question
+    def answerfunction(self):
+        answer = input("> ")
+        return answer
 
 
 def finished(explanation):
     print(explanation, "\nThanks for playing!")
-    exit(0)
-
-def answerfunction():
-    answer = input("> ")
-    if answer == 'Q' or answer == 'q':
-        finished("Closing program...")
-    else:
-        return answer
+    sys.exit(0)
 
 
+keywordsquiz = QuizInit(ex37.keywords_dict)
+sessionlist = keywordsquiz.listmaker()
+new_q = keywordsquiz.questionmaker(sessionlist)
+print(new_q)
+
+
+'''
 def quizzical(scoring):
     print("Time to test your knowledge!")
-    print("Follow the prompts on the screen or type 'q' to quit.")
     turns = input("How many turns would you like?\n> ")
-    if turns == 'Q' or turns == 'q':
-        finished("User quit")
-    else:
-        try:
-            turns = int(turns)
-        except Exception as e:
-            print("Please enter a whole number.")
-#is there a way to get this value to reflect the original?
-            quizzical(False)
+    try:
+        turns = int(turns)
+    except Exception as e:
+        raise ValueError
+        print("Please enter a whole number.")
+        quizzical(turns)
     points = 0
     gameround = 1
+    gameround = turns - gameround
     while gameround <= turns:
         print("-" * 15, "\n\nRound %d" % gameround)
-        print("Please define the following value or command:")
-        questionmaker(sessionlist)
-        answerfunction()
+        kq.questionmaker(sessionlist)
+        kq.answerfunction()
         if scoring == True:
             if answer == question:
                 points += 1
@@ -79,10 +81,11 @@ def quizzical(scoring):
                 print("Sorry, that is incorrect.")
         else:
             print("Here is the correct answer:")
-            print(session_dict[question])
+            print(session_dict(questionmaker.question))
         gameround += 1
-        print("\nHere's your standing:\n%d turns\n%d points" % (turns, points))
-    finished("\n\nFinished all rounds!")
+        print("Here's your standing:\n%d turns\n%d points" % (turns, points))
+    finished("Nice work!")
 
 if __name__ == '__main__':
     quizzical(False)
+'''
