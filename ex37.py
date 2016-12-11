@@ -1,12 +1,12 @@
 #new game to memorize symbols from ex37
-#definitely not finished. I haven't even set up all the dictionaries properly
+#dictionary complete. import this to one of the 'quizzical' scripts for a quiz
 import ex27v2
 
-
-keywords_dict = {
+full_dict = {
+#keywords_dict = {
 'and': 'Logical and. True and False == False',
 'as': 'Part of the with-as statement. with X as Y: pass',
-'assert': 'Assert (ensure) that something is true 	assert False, "Error!"',
+'assert': 'Assert (ensure) that something is true assert False, "Error!"',
 'break': 'Stop this loop right now. while True: break',
 'class': 'Define a class. class Person(object)',
 'continue': 'Don\'t process more of the loop, do it again. while True: continue',
@@ -21,23 +21,23 @@ keywords_dict = {
 'from': 'Importing specific parts of a module. from x import Y',
 'global': 'Declare that you want a global variable. global X',
 'if': 'If condition. if: X; elif: Y; else: J',
-'import': 'Import a module into this one to use. 	import os',
-'in': 'Part of for-loops. Also a test of X in Y. 	for X in Y: pass also 1 in [1] == True',
+'import': 'Import a module into this one to use. import os',
+'in': 'Part of for-loops. Also a test of X in Y. for X in Y: pass also 1 in [1] == True',
 'is': 'Like == to test equality. 1 is 1 == True',
 'lambda': 'Create a short anonymous function. s = lambda y: y ** y; s(3)',
 'not': 'Logical not. not True == False',
 'or': 'Logical or. True or False == True',
 'pass': 'This block is empty. def empty(): pass',
 'print': 'Print this string. print \'this string\'',
-'raise': 'Raise an exception when things go wrong. 	raise ValueError("No")',
-'return': 'Exit the function with a return value. 	def X(): return Y',
+'raise': 'Raise an exception when things go wrong. raise ValueError("No")',
+'return': 'Exit the function with a return value. def X(): return Y',
 'try': 'Try this block, and if exception, go to except. try: pass',
 'while': 'While loop. while X: pass',
 'with': 'With an expression as a variable do. with X as Y: pass',
-'yield': 'Pause here and return to caller. def X(): yield Y; X().next()'
-}
+'yield': 'Pause here and return to caller. def X(): yield Y; X().next()',
+#}
 
-data_types_dict = {
+#data_types_dict = {
 'True': 'True boolean value. True or False == True',
 'False': 'False boolean value. False and True == False',
 'None': 'Represents "nothing" or "no value". x = None',
@@ -45,24 +45,24 @@ data_types_dict = {
 'numbers': 'Stores integers. i = 100',
 'floats': 'Stores decimals. i = 10.389',
 'lists': 'Stores a list of things. j = [1,2,3,4]',
-'dicts': "Stores a key=value mapping of things. e = {'x': 1, 'y': 2}"
-}
+'dicts': "Stores a key=value mapping of things. e = {'x': 1, 'y': 2}",
+#}
 
-string_escape_sequences_dict = {
+#string_escape_sequences_dict = {
 '\\': 'Backslash',
 "\\'": 'Single-quote',
 '\"': 'Double-quote',
-'\\a': 'Bell',
+'\\a': 'Plays Bell sound',
 '\\b': 'Backspace',
 '\\f': 'Formfeed',
 '\\n': 'Newline',
 '\r': 'Carriage',
 '\\t': 'Tab',
-'\\v': 'Vertical tab'
-}
+'\\v': 'Vertical tab',
+#}
 
 
-string_format_dict = {
+#string_format_dict = {
 '%d': 'Decimal integers (not floating point). "%d" % 45 == \'45\'',
 '%i': 'Same as %d. "%i" % 45 == \'45\'',
 '%o': 'Octal number. "%o" % 1000 == \'1750\'',
@@ -78,10 +78,10 @@ string_format_dict = {
 '%c': 'Character format. "%c" % 34 == \'"\'',
 '%r': 'Repr format (debugging format). "%r" % int == "<type \'int\'>"',
 '%s': 'String format. "%s there" % \'hi\' == \'hi there\'',
-'%%': 'A percent sign. "%g%%" % 10.34 == \'10.34%\''
-}
+'%%': 'A percent sign. "%g%%" % 10.34 == \'10.34%\'',
+#}
 
-operators_dict = {
+#operators_dict = {
 '+': 'Addition. 2 + 4 == 6',
 '-': 'Subtraction. 2 - 4 == -2',
 '*': 'Multiplication. 2 * 4 == 8',
@@ -112,4 +112,5 @@ operators_dict = {
 '//=': 'Floor divide and assign. x = 1; x //= 2',
 '%=': 'Modulus assign. x = 1; x %= 2',
 '**=': 'Power assign. x = 1; x **= 2'
+#}
 }
