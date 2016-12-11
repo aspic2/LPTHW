@@ -1,6 +1,7 @@
 #centralize the quiz functions and just import appropriate dicts
 #revisit commandline arguments. find way to input dictionaries from there
-'''functions/processes for this script:
+'''
+functions/processes for this script:
     import dict(s)
     function: make list from dicts
         return list or Error
@@ -17,10 +18,12 @@
 
 
 import ex37
+import ex27v2
 import random
 from sys import exit
 
-session_dict = ex37.full_dict
+#session_dict = ex37.full_dict
+session_dict = ex27v2.logic_dict
 
 class QuizInit(object):
 
@@ -42,93 +45,67 @@ class Quizzical(QuizInit):
     def __init__(self):
         pass
 
-    def finished(explanation):
+    def finished(self, explanation):
         self.explanation = explanation
         print(self.explanation, "\nThanks for playing!")
         exit(0)
 
-    def questionmaker(self,somelist):
-        self.question = random.choice(self.somelist)
-        question = self.question
+    def questionmaker(self,source_list):
+        self.source_list = source_list
+        self.question = random.choice(self.source_list)
         print("Please define the following value or command:")
+        print(self.question)
         return self.question
 
     def answerfunction(self):
-        self.answer = input("> ")
-        return self.answer
+        self.response = input("> ")
+        if self.response == 'q' or self.response == 'Q':
+            quizzical.finished("User quit")
+        else:
+            return self.response
 
-    def quizzical(self, scoring, sessionlist):
+    def start_quiz(self, scoring, sessionlist):
         self.scoring = scoring
         self.sessionlist = sessionlist
         print("Time to test your knowledge!")
         self.turns = input("How many turns would you like?\n> ")
         if self.turns == "Q" or self.turns == 'q':
-            Quizzical.finished("User quit")
+            quizzical.finished("User quit")
         else:
             try:
                 self.turns = int(self.turns)
-                print(self.turns)
             except Exception as e:
                 print("Please enter a whole number.")
-                quizzical(self, scoring)
+                start_quiz(self, scoring, sessionlist)
         self.points = 0
         self.gameround = 1
         while self.gameround <= self.turns:
             print("-" * 15, "\n\nRound %d" % self.gameround)
-            Quizzical.questionmaker(self.sessionlist)
-            Quizzical.answerfunction()
+            session_q = quizzical.questionmaker(sessionlist)
+            session_r = quizzical.answerfunction()
+            correct_a = quizinit.session_dict[session_q]
             if self.scoring == True:
-                if answer == question:
+                correct_a = str(correct_a).lower()
+                session_r = str(session_r).lower()
+                if session_r == correct_a:
                     self.points += 1
                     print("That is correct! Nice work!")
                 else:
                     print("Sorry, that is incorrect.")
+                    print("Here is the correct answer:")
+                    print(correct_a)
             else:
                 print("Here is the correct answer:")
-                print(QuizInit.session_dict[questionmaker.question])
+                print(correct_a)
             self.gameround += 1
             print("Here's your standing:\n%d turns\n%d points" % (self.turns, self.points))
-        Quizzical.finished("\n\nFinished all rounds!")
+        quizzical.finished("\n\nFinished all rounds!")
+
 
 quizinit = QuizInit(session_dict)
 tolist = ToList()
-listmaker = tolist.listmaker(session_dict)
+made_list = tolist.listmaker(session_dict)
 quizzical = Quizzical()
-print(listmaker)
-session_quiz = quizzical.quizzical(False, listmaker)
-
-
-
-'''
-def quizzical(scoring):
-    print("Time to test your knowledge!")
-    turns = input("How many turns would you like?\n> ")
-    try:
-        turns = int(turns)
-    except Exception as e:
-        raise ValueError
-        print("Please enter a whole number.")
-        quizzical(turns)
-    points = 0
-    gameround = 1
-    gameround = turns - gameround
-    while gameround <= turns:
-        print("-" * 15, "\n\nRound %d" % gameround)
-        kq.questionmaker(sessionlist)
-        kq.answerfunction()
-        if scoring == True:
-            if answer == question:
-                points += 1
-                print("That is correct! Nice work!")
-            else:
-                print("Sorry, that is incorrect.")
-        else:
-            print("Here is the correct answer:")
-            print(session_dict(questionmaker.question))
-        gameround += 1
-        print("Here's your standing:\n%d turns\n%d points" % (turns, points))
-    finished("Nice work!")
 
 if __name__ == '__main__':
-    quizzical(False)
-'''
+    session_quiz = quizzical.start_quiz(True, made_list)
