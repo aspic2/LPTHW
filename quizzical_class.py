@@ -23,7 +23,7 @@ import random
 from sys import exit
 
 #session_dict = ex37.full_dict
-session_dict = ex27v2.logic_dict
+session_dict = ex37.full_dict
 
 class QuizInit(object):
 
@@ -108,4 +108,4 @@ made_list = tolist.listmaker(session_dict)
 quizzical = Quizzical()
 
 if __name__ == '__main__':
-    session_quiz = quizzical.start_quiz(True, made_list)
+    session_quiz = quizzical.start_quiz(False, made_list)
