@@ -1,5 +1,4 @@
 #centralize the quiz functions and just import appropriate dicts
-#revisit commandline arguments. find way to input dictionaries from there
 '''
 functions/processes for this script:
     import dict(s)
@@ -13,17 +12,23 @@ functions/processes for this script:
         increment points or move on
     function: exit game
         at end of turns or when user prompts exit
+
+Instructions: dictionaries imported at the top of the script.
+Set session_dict to the correct dictionary, and reset quizzical
+argument at bottom (and in turns try/except) to True or False
 '''
 
 
 
 import ex37
 import ex27v2
+import ex41
 import random
 from sys import exit
 
-#session_dict = ex37.full_dict
+#session_dict = ex27v2.logic_dict
 session_dict = ex37.full_dict
+session_dict = ex41.oop_phrases
 
 class QuizInit(object):
 
@@ -57,7 +62,7 @@ class Quizzical(QuizInit):
         print(self.question)
         return self.question
 
-    def answerfunction(self):
+    def userresponse(self):
         self.response = input("> ")
         if self.response == 'q' or self.response == 'Q':
             quizzical.finished("User quit")
@@ -80,14 +85,14 @@ class Quizzical(QuizInit):
         self.points = 0
         self.gameround = 1
         while self.gameround <= self.turns:
-            print("-" * 15, "\n\nRound %d" % self.gameround)
-            session_q = quizzical.questionmaker(sessionlist)
-            session_r = quizzical.answerfunction()
-            correct_a = quizinit.session_dict[session_q]
+            print("-" * 15, "\n\nRound %d:    %d points" % (self.gameround, self.points))
+            turn_q = quizzical.questionmaker(sessionlist)
+            turn_r = quizzical.userresponse()
+            correct_a = str(quizinit.session_dict[turn_q])
             if self.scoring == True:
-                correct_a = str(correct_a).lower()
-                session_r = str(session_r).lower()
-                if session_r == correct_a:
+                correct_a = correct_a.lower()
+                turn_r = session_r.lower()
+                if turn_r == correct_a:
                     self.points += 1
                     print("That is correct! Nice work!")
                 else:
@@ -98,8 +103,7 @@ class Quizzical(QuizInit):
                 print("Here is the correct answer:")
                 print(correct_a)
             self.gameround += 1
-            print("Here's your standing:\n%d turns\n%d points" % (self.turns, self.points))
-        quizzical.finished("\n\nFinished all rounds!")
+        quizzical.finished("\n\nFinished all %d rounds with %d points!" % (self.turns, self.points))
 
 
 quizinit = QuizInit(session_dict)
