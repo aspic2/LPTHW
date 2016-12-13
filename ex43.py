@@ -11,29 +11,51 @@ Aliens have invaded a space ship and our hero has to go through a
 class Scene(object):
     description = None
 
+    def __init__(self):
+        self.completed = False
+        while completed = False:
+            print(description)
+            self.enter()
+
     def enter(self):
-        print(description)
+        start_scene()
+
 
 
 class Engine(object):
 
     def __init__(self, scene_map):
-        pass
+        self.scene_map = Map.maps
 
     def play(self):
         pass
 
 class Death(Scene):
 
-    description = "Death is always right around the corner. Looks like it finally caught up with you."
+    description = "Death is always right around the corner. \
+    \nLooks like it finally caught up with you."
 
-    def enter(self):
+    def enter(self, description):
         sys.exit(0)
 
 class CentralCorridor(Scene):
 
+    description = "You find yourself in an unfamiliar dark hallway, and your\
+    head hurts. You look around to get your bearings. You realize you are on\
+    an alien ship. Judging by the view out the window, it is headed for\
+    planet Perscal #25\n\nYou need to get out of here, and quick. There's no\
+    escape once you reach the planet.\nThese ships typically have ecape\
+    pods, so you'll need to find one to get away."
+
+    completed = False
+    while completed is False:
+
     def enter(self):
-        pass
+            print(description)
+
+
+
+
 
 class LaserWeaponArmory(Scene):
 
@@ -54,7 +76,8 @@ class EscapePod(Scene):
 class Map(object):
 
     def __init__(self, start_scene):
-        pass
+        maps = [central_corridor, laser_weapon_armory, the_bridge,
+        escape_pod, death]
 
     def next_scene(self, scene_name):
         pass
