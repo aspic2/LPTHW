@@ -1,21 +1,13 @@
 #centralize the quiz functions and just import appropriate dicts
-#revisit commandline arguments. find way to input dictionaries from there
-'''functions/processes for this script:
-    import dict(s)
-    function: make list from dicts
-        return list or Error
-    function: pull random question from list
-        return question or Error
-    function: request input from user
-        return input or Error
-    function: evaluate user input and question
-        increment points or move on
-    function: exit game
-        at end of turns or when user prompts exit
+'''
+Instructions: dictionaries imported at the top of the script.
+Set session_dict to the correct dictionary, and reset quizzical
+argument at bottom (and in turns try/except) to True or False
 '''
 
-
+#from ex27v2 import logic_dict
 from ex37 import full_dict
+#from ex41 import oop_phrases
 import random
 from sys import exit
 
@@ -30,26 +22,21 @@ def listmaker(source_dict):
 
 sessionlist = listmaker(session_dict)
 
-question = None
-
-def questionmaker(x):
-    global question
-    question = random.choice(x)
+def questionmaker(question_list):
+    question = random.choice(question_list)
     print(question)
     return question
-
 
 def finished(explanation):
     print(explanation, "\nThanks for playing!")
     exit(0)
 
-def answerfunction():
-    answer = input("> ")
-    if answer == 'Q' or answer == 'q':
-        finished("Closing program...")
+def userresponse():
+    response = input("> ")
+    if response == 'Q' or response == 'q':
+        finished("User quit.")
     else:
-        return answer
-
+        return response
 
 def quizzical(scoring):
     print("Time to test your knowledge!")
@@ -61,28 +48,35 @@ def quizzical(scoring):
         try:
             turns = int(turns)
         except Exception as e:
-            print("Please enter a whole number.")
-#is there a way to get this value to reflect the original?
+            print("Please enter a whole number.\n\n")
+#is there a way to connect this value to the original argument?
             quizzical(False)
     points = 0
     gameround = 1
     while gameround <= turns:
-        print("-" * 15, "\n\nRound %d" % gameround)
+        print("-" * 15, "\n\nRound %d:    %d points" % (gameround, points))
         print("Please define the following value or command:")
-        questionmaker(sessionlist)
-        answerfunction()
+        turn_q = questionmaker(sessionlist)
+        turn_r = userresponse()
+        #Ensure all boolean values are strings
+        correct_a = str(session_dict[turn_q])
         if scoring == True:
-            if answer == question:
+            lower_turn_r = turn_r.lower()
+            lower_correct_a = correct_a.lower()
+            if lower_turn_r == lower_correct_a:
                 points += 1
                 print("That is correct! Nice work!")
             else:
-                print("Sorry, that is incorrect.")
+                print("Sorry, that is incorrect. Here is the correct answer: ")
+                print(correct_a)
         else:
-            print("Here is the correct answer:")
-            print(session_dict[question])
+            print("Here is the correct answer: ")
+            print(correct_a)
         gameround += 1
-        print("\nHere's your standing:\n%d turns\n%d points" % (turns, points))
-    finished("\n\nFinished all rounds!")
+    finished("\n\nFinished all %d rounds with %d points!" %(turns, points))
+
+
 
 if __name__ == '__main__':
+    #quizzical(True)
     quizzical(False)
