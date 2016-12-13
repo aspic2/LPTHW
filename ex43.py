@@ -9,9 +9,10 @@ Aliens have invaded a space ship and our hero has to go through a
  '''
 
 class Scene(object):
+    description = None
 
     def enter(self):
-        pass
+        print(description)
 
 
 class Engine(object):
@@ -24,8 +25,10 @@ class Engine(object):
 
 class Death(Scene):
 
+    description = "Death is always right around the corner. Looks like it finally caught up with you."
+
     def enter(self):
-        pass
+        sys.exit(0)
 
 class CentralCorridor(Scene):
 
@@ -59,7 +62,12 @@ class Map(object):
     def opening_scene(self):
         pass
 
-
+'''
 a_map = Map('central_corridor')
 a_game = Engine(a_map)
 a_game.play()
+'''
+
+deathscene = Death.enter()
+
+deathscene
