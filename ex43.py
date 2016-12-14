@@ -8,6 +8,38 @@ Aliens have invaded a space ship and our hero has to go through a
  engine what room to run next out of the map.
  '''
 
+'''
+Scenes
+    v(description)
+    f(gameplay)
+    -Bridge
+    -Central Corridor
+    -Death
+    -Escape Pod
+    -Laser Weapon Armory
+
+Engine
+    list of scenes
+    f(next scene)
+Character
+    v(name)
+    v(health)
+    f(attack)
+    f(enter scene)
+    -Player
+    -Gothons
+Bomb
+    v(T till explosion)
+    v(location)
+    f(explode)
+    f(disarm)
+Map
+    v(list of scenes)
+    v(player location)
+    v(queue engine)
+'''
+
+
 class Scene(object):
     description = None
 
@@ -52,6 +84,13 @@ class CentralCorridor(Scene):
 
     def enter(self):
             print(description)
+            move = input("Do you go left or right?")
+            move = str(move).lower()
+            if move == 'left' or move == 'l':
+                Map.next_scene()
+            else:
+                Map.next_scene(death)
+
 
 
 
@@ -80,10 +119,10 @@ class Map(object):
         escape_pod, death]
 
     def next_scene(self, scene_name):
-        pass
+        gameplay(maps[scene_name])
 
     def opening_scene(self):
-        pass
+        gameplay(maps[0])
 
 '''
 a_map = Map('central_corridor')
