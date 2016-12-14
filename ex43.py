@@ -7,6 +7,11 @@ Aliens have invaded a space ship and our hero has to go through a
  print its own description when the player enters it and then tell the
  engine what room to run next out of the map.
  '''
+'''
+*Player initializes. *Player moves to first *Scene. Player completes Scene.task
+Player moves to next Scene
+
+'''
 
 '''
 Scenes
@@ -45,7 +50,7 @@ class Scene(object):
 
     def __init__(self):
         self.completed = False
-        while completed = False:
+        while completed == False:
             print(description)
             self.enter()
 
@@ -67,9 +72,12 @@ class Death(Scene):
     description = "Death is always right around the corner. \
     \nLooks like it finally caught up with you."
 
-    def enter(self, description):
+    def enter():
+        x = description
+        print(x)
         sys.exit(0)
 
+'''
 class CentralCorridor(Scene):
 
     description = "You find yourself in an unfamiliar dark hallway, and your\
@@ -79,22 +87,24 @@ class CentralCorridor(Scene):
     escape once you reach the planet.\nThese ships typically have ecape\
     pods, so you'll need to find one to get away."
 
-    completed = False
-    while completed is False:
-
     def enter(self):
-            print(description)
-            move = input("Do you go left or right?")
-            move = str(move).lower()
-            if move == 'left' or move == 'l':
-                Map.next_scene()
-            else:
-                Map.next_scene(death)
+        print(description)
+        move = input("Do you go left or right?")
+        move = str(move).lower()
+        if move == 'left' or move == 'l':
+            Map.next_scene()
+        else:
+            Map.next_scene(death)
+'''
 
 
 
+class Player(object):
+    def __init__(self, name):
+        self.name = name
 
-
+    def enter_scene():
+        pass
 
 class LaserWeaponArmory(Scene):
 
