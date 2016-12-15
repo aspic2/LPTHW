@@ -1,4 +1,5 @@
-#finish the map (variable names) and the Engine to run
+#Gothons from Planet Percal #25.
+#Finished game with quit function and error handling.
 
 '''
 Aliens have invaded a space ship and our hero has to go through a
@@ -10,41 +11,8 @@ Aliens have invaded a space ship and our hero has to go through a
  engine what room to run next out of the map.
  '''
 
-'''
-Scenes
-    v(description)
-    f(gameplay)
-    -Bridge
-    -Central Corridor
-    -Death
-    -Escape Pod
-    -Laser Weapon Armory
-
-Engine
-    list of scenes
-    f(next scene)
-Character
-    v(name)
-    v(health)
-    f(attack)
-    f(enter scene)
-    -Player
-    -Gothons
-Bomb
-    v(T till explosion)
-    v(location)
-    f(explode)
-    f(disarm)
-Map
-    v(list of scenes)
-    v(player location)
-    v(queue engine)
-'''
-
 from sys import exit
 import random
-
-
 
 class Scene(object):
 
@@ -54,9 +22,6 @@ class Scene(object):
 
     def enter(self):
         print(self.description)
-
-
-
 
 
 class Engine(object):
@@ -75,6 +40,7 @@ class Engine(object):
 
         self.scene_map.scenes[final.enter()]
 
+
 class Death(Scene):
 
     description = "Death is always right around the corner. \
@@ -84,6 +50,12 @@ class Death(Scene):
         print(Death.description)
         return exit(0)
 
+
+class Quit(Scene):
+    description = "User quit.\nchicken..."
+    def enter():
+        print(Quit.description)
+        return exit(0)
 
 class CentralCorridor(Scene):
 
@@ -106,26 +78,21 @@ class CentralCorridor(Scene):
                 print("That Gothon was no match for your moves.")
                 print("You proceed to the Laser Weapons Armory.\n\n\n")
                 return 'lwa'
+            elif step2 == 'q':
+                return 'quit'
             else:
                 print("That was a bad idea.")
                 print("This Gothon was all state in high school at track and boxing.")
                 print("He destroys you, broh.\n\n")
                 return 'death'
+        elif step1 == 'q':
+            return 'quit'
         else:
             print("You stall and stall. Eventually you land on Percal #25.")
             print("The Gothons disembark the ship and find you cowering in a corner.")
             print("They rip you to shreds.\n\n")
             return 'death'
 
-
-
-
-class Player(object):
-    def __init__(self, name):
-        self.name = name
-
-    def enter_scene():
-        pass
 
 class LaserWeaponArmory(Scene):
 
@@ -145,6 +112,8 @@ class LaserWeaponArmory(Scene):
         tries = 0
         while tries < 5:
             guess = input("Enter a number\n> ")
+            if guess == 'q':
+                return 'quit'
             try:
                 guess = int(guess)
             except ValueError:
@@ -162,7 +131,6 @@ class LaserWeaponArmory(Scene):
         return 'death'
 
 
-
 class TheBridge(Scene):
 
     description = "This is The Bridge. There are several Gothons guarding it, too many to outdance, even for you. You try to sneak up on them, but they hear you and point their guns at you"
@@ -176,9 +144,12 @@ class TheBridge(Scene):
             "Two more come by, see what's going on, and sneak away as though they were never here.", \
             "You have set the bomb and now need to get out of here.\n\n\n")
             return 'ep'
+        elif step1 == 'q':
+            return 'quit'
         else:
             print("You sniveling worm. After all this work, you give up? Death ensues.\n\n")
             return 'death'
+
 
 class EscapePod(Scene):
 
@@ -189,6 +160,8 @@ class EscapePod(Scene):
         step1 = input("There are three pods here. Do you want pod 1, 2, or 3?\n> ")
         if step1 == '1' or step1 == '2' or step1 == '3':
             return 'youwin'
+        elif step1 == 'q':
+            return 'quit'
         else:
             print("You really should listen to me more...\n\n\n")
             return 'death'
@@ -211,7 +184,8 @@ class Map(object):
     'bridge': TheBridge,
     'lwa': LaserWeaponArmory,
     'death': Death,
-    'youwin': YouWin
+    'youwin': YouWin,
+    'quit': Quit
     }
 
     def __init__(self, start_scene):
@@ -224,12 +198,6 @@ class Map(object):
         Map.scenes['cc']
 
 
-#my version
-
 start_map = Map('cc')
 new_game = Engine(start_map)
 new_game.play()
-
-
-#test_scene = CentralCorridor.enter()
-#print(test_scene)
