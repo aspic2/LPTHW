@@ -30,7 +30,7 @@ class Engine(object):
         self.scene_map = scene_map
 
     def play(self):
-        print("-" * 20)
+        print("-" * 50)
         print("GOTHONS FROM PLANET PERCAL #25")
         start = self.scene_map.scenes['cc']
         final = self.scene_map.scenes['youwin']
@@ -44,7 +44,7 @@ class Engine(object):
 class Death(Scene):
 
     description = "Death is always right around the corner. \
-    \nLooks like it finally caught up with you."
+    \nLooks like it finally caught up with you.\n[You died]"
 
     def enter():
         print(Death.description)
@@ -64,29 +64,29 @@ class CentralCorridor(Scene):
     "You look around to get your bearings. You realize you are on an alien ship.",
     "Judging by the view out the window, it is headed for planet Percal #25, home of the Gothons.",
     "You need to get out of here, and quick. There's no escape once you reach the planet.",
-    "These ships typically have ecape pods, so you'll need to find one to get away.",
+    "These ships typically have escape pods, so you'll need to find one to get away.",
     "Additionally, you will need to clear the ship of Gothons so they don't chase you down.\n\n")
 
     def enter():
         for line in CentralCorridor.description:
             print(line)
-        step1 = input("Do you head forward through the hall or back?\n> ")
-        if 'forward' in step1:
-            print("You run into your first Gothon")
+        step1 = input("Do you head forward through the hall or back away into a corner?\n> ")
+        if step1 == 'q':
+            return 'quit'
+        elif 'forward' in step1:
+            print("As you proceed forward, you run into your first Gothon.")
             step2 = input("You can fight, run, or outdance it. Which do you choose?\n> ")
-            if 'outdance' in step2:
+            if step2 == 'q':
+                return 'quit'
+            elif 'outdance' in step2:
                 print("That Gothon was no match for your moves.")
                 print("You proceed to the Laser Weapons Armory.\n\n\n")
                 return 'lwa'
-            elif step2 == 'q':
-                return 'quit'
             else:
                 print("That was a bad idea.")
                 print("This Gothon was all state in high school at track and boxing.")
                 print("He destroys you, broh.\n\n")
                 return 'death'
-        elif step1 == 'q':
-            return 'quit'
         else:
             print("You stall and stall. Eventually you land on Percal #25.")
             print("The Gothons disembark the ship and find you cowering in a corner.")
@@ -138,14 +138,14 @@ class TheBridge(Scene):
     def enter():
         print(TheBridge.description)
         step1 = input("Do you give up or try to outsmart them?\n> ")
-        if 'outsmart' in step1:
+        if step1 == 'q':
+            return 'quit'
+        elif 'outsmart' in step1:
             print("'Smart' thinking! You point your gun at the bomb.", \
             "They know what that means and they slowly back away from you.", \
             "Two more come by, see what's going on, and sneak away as though they were never here.", \
             "You have set the bomb and now need to get out of here.\n\n\n")
             return 'ep'
-        elif step1 == 'q':
-            return 'quit'
         else:
             print("You sniveling worm. After all this work, you give up? Death ensues.\n\n")
             return 'death'
@@ -153,15 +153,16 @@ class TheBridge(Scene):
 
 class EscapePod(Scene):
 
-    description = "This is the Escape Pod. Pick one and go!"
+    description = "This is the Escape Pod Room. Pick one and go!"
 
     def enter():
         print(EscapePod.description)
         step1 = input("There are three pods here. Do you want pod 1, 2, or 3?\n> ")
-        if step1 == '1' or step1 == '2' or step1 == '3':
-            return 'youwin'
-        elif step1 == 'q':
+        #correct_pod = random.randint(1,3)
+        if step1 == 'q':
             return 'quit'
+        elif step1 == '1' or step1 == '2' or step1 == '3':
+            return 'youwin'
         else:
             print("You really should listen to me more...\n\n\n")
             return 'death'
@@ -169,7 +170,7 @@ class EscapePod(Scene):
 
 class YouWin(Scene):
 
-    description = "Nice work! You picked a good pod and you blast out into space. A few seconds go by and you hear a shockwave. The Gothon shop ignited like a sun. You sit back, relax, and catch some Z's as you head home."
+    description = "Nice work! You picked a good pod and you blast out into space. A few seconds go by and you feel a shockwave. The Gothon ship ignites like a sun. You sit back, relax, and catch some Z's as you head home."
 
     def enter():
         print(YouWin.description)
