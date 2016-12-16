@@ -71,7 +71,7 @@ class CentralCorridor(Scene):
         for line in CentralCorridor.description:
             print(line)
         step1 = input("Do you head forward through the hall or back?\n> ")
-        if step1 == 'forward':
+        if 'forward' in step1:
             print("You run into your first Gothon")
             step2 = input("You can fight, run, or outdance it. Which do you choose?\n> ")
             if 'outdance' in step2:
