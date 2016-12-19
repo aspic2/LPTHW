@@ -14,12 +14,14 @@ from sys import exit
 
 session_dict = full_dict
 
+
 def listmaker(source_dict):
     newlist = []
     for key in source_dict:
         newlist.append(key)
     return newlist
 
+'''!!!change this to the correct dictionary!!!'''
 sessionlist = listmaker(session_dict)
 
 def questionmaker(question_list):
@@ -51,6 +53,7 @@ def quizzical(scoring):
             print("Please enter a whole number.\n\n")
 #is there a way to connect this value to the original argument?
             quizzical(False)
+
     points = 0
     gameround = 1
     while gameround <= turns:
