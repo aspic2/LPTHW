@@ -72,8 +72,30 @@ class Board(object):
         #return self.gameboard
 
 
+class Player(object):
+    score = 0
 
-#three.print_board() = Board(3)
-#print(three.print_board())
+    def getPossibleMoves():
+        possiblemoves = None
+        for x in Board.gameboard:
+            if x == "|_|":
+                possiblemoves.append(x)
+        return possiblemoves
 
-board_matrix = Board(3).print_board()
+
+class AI(Player):
+    pass
+
+class Gameplay(object):
+    pass
+
+
+class AI(Player):
+    pass
+
+
+
+tictactoe = Board(3)
+#tictactoe.print_board()
+
+print(type(tictactoe.gameboard))
