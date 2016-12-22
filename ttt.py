@@ -63,25 +63,48 @@ class Board(object):
         self.gameboard = []
         self.rows = rows
         for row in range (self.rows):
-            self.gameboard.append("|_|" * self.rows)
+            self.gameboard.append("_" * self.rows)
+
+    def getSpace(self, xvalue, yvalue):
+        print(self.gameboard[xvalue][yvalue])
+
+    #not working
+    def updateBoard(self, xcoord, ycoord):
+        self.gameboard[xcoord][ycoord] = "M"
+        return self.gameboard
 
 
     def print_board(self):
         for row in self.gameboard:
-            print("".join(row))
+            print("|".join(row))
         #return self.gameboard
 
 
 class Player(object):
     score = 0
-
-    def getPossibleMoves():
-        possiblemoves = None
-        for x in Board.gameboard:
-            if x == "|_|":
+    mark = 'X'
+    def getPossibleMoves(self):
+        possiblemoves = []
+        for x in tictactoe.gameboard:
+            if x == "_":
                 possiblemoves.append(x)
         return possiblemoves
 
+    def makeMove(self):
+        #move = input("Place your marker:\n[xcoordinate],[ycoord]")
+        row = input("Guess the row:")
+        try:
+            row = int(row)
+        except TypeError as e:
+            print('please enter an integer on the board')
+            makeMove(self)
+        column = input("Guess the column:")
+        try:
+            column = int(column)
+        except TypeError as e:
+            print('please enter an integer on the board')
+            makeMove(self)
+        return row, column
 
 class AI(Player):
     pass
@@ -90,12 +113,19 @@ class Gameplay(object):
     pass
 
 
-class AI(Player):
-    pass
-
 
 
 tictactoe = Board(3)
 #tictactoe.print_board()
+print(tictactoe.gameboard)
 
-print(type(tictactoe.gameboard))
+me = Player()
+
+tictactoe.updateBoard(1,1)
+#tictactoe.print_board()
+
+#tictactoe.updateBoard(1,2)
+#tictactoe.print_board()
+
+
+#print(type(tictactoe.gameboard))
