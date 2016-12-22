@@ -1,5 +1,5 @@
 #Command line tic tac toe
-
+#Make gameboard object mutable.
 '''
 Problem: create an entertaining game that will push my knowledge of programming
 
@@ -48,7 +48,7 @@ AI
 
 Board
     3x3 board
-    Mutable with symbols (X or O)
+    Mutable with symbols (Players' Chosen Initial (e.g. "M"))
 
 
 Scoring:
