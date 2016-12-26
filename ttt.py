@@ -1,5 +1,4 @@
 #Command line tic tac toe
-#Make gameboard object mutable.
 '''
 Problem: create an entertaining game that will push my knowledge of programming
 
@@ -41,8 +40,6 @@ Nouns:
     Score
 
 
-
-
 AI
 
 
@@ -55,24 +52,29 @@ Scoring:
 
     1 pt per mark on screen
     3 pts for three in row
-
 '''
 
 class Board(object):
     def __init__(self, rows):
         self.gameboard = []
         self.rows = rows
-        for row in range (self.rows):
-            self.gameboard.append("_" * self.rows)
+        for row in range(self.rows):
+            self.gameboard.append(["_"] * self.rows)
 
     def getSpace(self, xvalue, yvalue):
         print(self.gameboard[xvalue][yvalue])
 
-    #not working
+    #does not work
+    def showOpenSpaces(self):
+        self.possiblemoves = []
+        for x in self.gameboard:
+            if x == "_":
+                self.possiblemoves.append(x)
+        return self.possiblemoves
+
     def updateBoard(self, xcoord, ycoord):
         self.gameboard[xcoord][ycoord] = "M"
         return self.gameboard
-
 
     def print_board(self):
         for row in self.gameboard:
@@ -83,12 +85,7 @@ class Board(object):
 class Player(object):
     score = 0
     mark = 'X'
-    def getPossibleMoves(self):
-        possiblemoves = []
-        for x in tictactoe.gameboard:
-            if x == "_":
-                possiblemoves.append(x)
-        return possiblemoves
+
 
     def makeMove(self):
         #move = input("Place your marker:\n[xcoordinate],[ycoord]")
@@ -107,25 +104,28 @@ class Player(object):
         return row, column
 
 class AI(Player):
-    pass
+
+    def randomMove():
+
 
 class Gameplay(object):
-    pass
+    rounds = 5
+
 
 
 
 
 tictactoe = Board(3)
 #tictactoe.print_board()
+
 print(tictactoe.gameboard)
-
+print(type(tictactoe.gameboard))
 me = Player()
-
 tictactoe.updateBoard(1,1)
-#tictactoe.print_board()
+tictactoe.print_board()
 
-#tictactoe.updateBoard(1,2)
-#tictactoe.print_board()
+tictactoe.getSpace(1,1)
+
 
 
 #print(type(tictactoe.gameboard))
