@@ -27,8 +27,6 @@ Scenes:
     Gym
     Jail
     Death
-
-
 '''
 
 import random
@@ -113,15 +111,15 @@ class Kitchen(Scene):
 
 class Garage(Scene):
     description = 'This is the garage.'
-    second_time = False
+    been_here = False
 
     def enter_scene():
         print(Garage.description)
-        if Garage.second_time:
+        if Garage.been_here:
             print("Welcome Home")
             return Home.enter_scene()
         print("Time to head out!")
-        Garage.second_time = True
+        Garage.been_here = True
         return PublicTrans.enter_scene()
 
 
@@ -129,20 +127,20 @@ class Garage(Scene):
 
 class PublicTrans(Scene):
     description = "Everyone loves public transportation!"
-    second_time = False
+    been_here = False
 
     def enter_scene():
         print(PublicTrans.description)
         return PublicTrans.decision_time()
 
     def decision_time():
-        if PublicTrans.second_time:
+        if PublicTrans.been_here:
             print("What a day it has been!")
             decision = input("Want to head home or to the gym?\n> ")
             return Bed.enter_scene()
         print("Add logic branch here.")
         decision = input("What next?\n> ")
-        PublicTrans.second_time = True
+        PublicTrans.been_here = True
         return Workplace.enter_scene()
 
     #return Home

@@ -122,6 +122,7 @@ class AI(Player):
 
 class Gameplay(object):
     rounds = 5
+    #use a modulo to alternate turns
 
 
 
