@@ -65,7 +65,8 @@ def which_os():
     system.lower()
     return system
 
-print(which_os())
+session_os = which_os()
+print("You are running a %s device. Generating dictionary..." % session_os)
 
 def proper_dict(x):
     if x == 'Windows':
@@ -74,7 +75,7 @@ def proper_dict(x):
         dictionary = mac_commands
     return dictionary
 
-session_dict = proper_dict(which_os())
+session_dict = proper_dict(session_os)
 
 def listmaker(dictionary):
     newlist = []
@@ -111,16 +112,19 @@ def honesty():
 #variable source is a list from which to choose questions
 def questions(source):
     print("No quiz this time. Just iterate through the answers.")
-    turns = 5
+    turns = 15
+    gameround = 1
     points = 0
     while turns > 0:
+        print("-" * 20, "\n Round %d" % gameround)
         current_question = random.choice(source)
-        print("What does this command do?", "\n", current_question)
+        print("What does this command do?", "\n%s" % current_question)
         user_input()
         print("The answer is:")
         print(session_dict[current_question])
         print("Are you correct?", "\n \n \n")
         turns -= 1
+        gameround += 1
         '''
         honesty()
         if honesty() == 'y':
