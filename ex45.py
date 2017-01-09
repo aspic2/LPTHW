@@ -78,7 +78,10 @@ class Home(Scene):
 
 
 class Bedroom(Scene):
-    description = "This is your bedroom."
+    description = ("This is your bedroom.",
+    "You awake to a bean of sunrise on your face.",
+    "Someone didn't close the blinds last night.",
+    "You sit up to find your room a mess. Not out of the ordinary."
     ending = False
 
     def enter_scene():
