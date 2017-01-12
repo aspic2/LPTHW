@@ -23,7 +23,6 @@ Scenes:
     Workplace
       Desk
       Lunchroom
-      Elevator
     Gym
     Jail
     Death
@@ -40,6 +39,7 @@ class Character(object):
 
 class Protagonist(Character):
     def __init__(self, name):
+        self.health = 50
         #name = input("What is your name?\n> ")
         print("Hello, %s. You have been initialized." % name)
 
@@ -47,6 +47,7 @@ class Protagonist(Character):
 class Scene(object):
     def __init__(self):
         self.description = description
+        self.been_here = False
 
     def enter_scene():
         pass
@@ -60,14 +61,15 @@ class Death(Scene):
 
 
 class Home(Scene):
-    description = "Ah, home sweet home!"
+    description = "Your home. Your hallway."
+    been_here = False
 
     def enter_scene():
         print(Home.description)
         return Home.decision_time()
 
     def decision_time():
-        decision = input("Where to?")
+        decision = input("Eat (kitchen), go straight to work, or back to bed?")
         if "work" in decision or "out" in dicision:
             return Garage.enter_scene()
 
@@ -91,7 +93,20 @@ class Bedroom(Scene):
     def decision_time():
         print("Add first logic branch here.")
         decision = input("What next?\n> ")
-        return Kitchen.enter_scene()
+        return Home.enter_scene()
+
+class Kitchen(Scene):
+    description = ("You are starving!", "Why don't you make yourself something to eat?", "You will need your strength today.")
+    been_here = False
+
+    def enter_scene():
+        for line in description:
+            print(line)
+        decision = input("Do you cook something or leave?\n> ")
+        if "cook" in decision:
+            Protagonist.health = 100
+        else:
+            return Home.enter_scene()
 
 
 class Bed(Scene):
@@ -100,6 +115,7 @@ class Bed(Scene):
     def enter_scene():
         print(Bed.description)
         exit(0)
+
 
 class Kitchen(Scene):
     description = "This is the kitchen."
@@ -111,6 +127,7 @@ class Kitchen(Scene):
     def decision_time():
         print("Add logic here.")
         return Garage.enter_scene()
+
 
 class Garage(Scene):
     description = 'This is the garage.'
