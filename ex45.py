@@ -134,7 +134,7 @@ class Bedroom(Scene):
         print("Are you ready to get up and start the day?")
         decision = input("Y or N:\n> ").lower()
         if decision == 'y':
-            print("Every day is a new adventure!\nThis adventure begins in the hallway\n\n")
+            print("Every day is a new adventure!\nThis adventure begins in the hallway\n")
             protag.change_points(10)
             return Home.enter_scene()
         else:
@@ -158,7 +158,7 @@ class Kitchen(Scene):
             protag.change_health(50)
             protag.change_points(10)
             protag.live()
-            been_here = True
+            Kitchen.been_here = True
         return Home.enter_scene()
 
 
@@ -170,6 +170,7 @@ class Bed(Scene):
     def enter_scene():
         for line in Bed.description:
             print(line)
+        print("%s, here is your score:\n%d points" % (protag.name, protag.points))
         exit(0)
 
 
@@ -205,7 +206,7 @@ class PublicTrans(Scene):
             if 'gym' in decision:
                 return Gym.enter_scene()
             return Home.enter_scene()
-        print("In comes an undesireable, asking for money.")
+        print("\nIn comes an troublemaker, asking for money.")
         decision = input("What do you do: give money or ignore?\n> ")
         if 'give' in decision or 'money' in decision:
             print("That troublemaker thanks you, then pisses on your leg.", "Yuck!")
@@ -213,7 +214,7 @@ class PublicTrans(Scene):
             protag.change_points(30)
         elif 'ignore' in decision:
             print("You hold up your WSJ magazine and pretend like you didn't hear anything.")
-            print("The undesireable proceeds to beat you up and then piss on your leg.")
+            print("The troublemaker proceeds to beat you up and then piss on your leg.")
             print("Yuck!")
             protag.change_health(-70)
             protag.change_points(-10)
@@ -242,8 +243,8 @@ class Workplace(Scene):
         if 'work' in decision:
             print("Well aren't you a good little employee?")
             print("The boss comes by and pats you on the back.")
-            print("\tB: \"Nice work, %s. I am sure you can burn through this extra stuff in no time!\"" % protag.name)
-            print("The boss gives you 5 more assignments to take care of today.")
+            print("\tB: \"Nice work, %s.\nI am sure you can burn through this extra stuff in no time!\"" % protag.name)
+            print("The boss gives you 5 more assignments to take care of today.\n\n")
             print("You go to the breakroom", "grab some coffee,"\
             "return to your desk",\
             "and bury your head in work for the rest of the day.")
@@ -256,9 +257,9 @@ class Workplace(Scene):
             protag.change_points(-10)
             protag.live()
             return PublicTrans.enter_scene()
-        d2 = input("Some nerd from accounting has some questions for you. Do you assist him or beat him up?\n> ")
+        d2 = input("Some nerd from accounting has some questions for you.\nDo you assist him or beat him up?\n> ")
         if 'assist' in d2:
-            print("The nerd thanks you for your help.")
+            print("\n\nThe nerd thanks you for your help.")
             print("Afterwards, nerdy mentions how helpful you are to your boss.")
             print("You get a nice bonus and the rest of the day off.")
             protag.change_health(+20)
@@ -308,9 +309,9 @@ class Jail(Scene):
     def enter_scene():
         print("This is the end. I don't have any decisions for you to make here.",\
         "You just get beat up and die. So, uh, enjoy that.")
-        lastwords = input("Any last words?")
+        lastwords = input("Any last words?\n> ")
         print('Later, at your jail death...',\
-        '\tAnd his last words were "%s".' % lastwords)
+        '\n\tAnd his last words were "%s".' % lastwords)
         print('Rest in Power')
         protag.change_points(100)
         return Death.enter_scene()
