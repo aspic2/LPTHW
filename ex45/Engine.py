@@ -1,26 +1,27 @@
 
 import Scenes
-import characters
+from Characters import protag
 
 class GameMap(object):
     scenes = {
-    'bed': Bed,
-    'bedroom': Bedroom,
-    'gym': Gym,
-    'home': Home,
-    'jail': Jail,
-    'death': Death,
-    'publictrans': PublicTrans,
-    'kitchen': Kitchen,
-    'quit': Quit,
-    'workplace': Workplace
+    'away': Scenes.Away,
+    'bed': Scenes.Bed,
+    'bedroom': Scenes.Bedroom,
+    'gym': Scenes.Gym,
+    'home': Scenes.Home,
+    'jail': Scenes.Jail,
+    'death': Scenes.Death,
+    'publictrans': Scenes.PublicTrans,
+    'kitchen': Scenes.Kitchen,
+    'quit': Scenes.Quit,
+    'workplace': Scenes.Workplace
     }
 
 
 class Gameplay(object):
     def __init__(self, first_scene):
         self.first_scene = first_scene
-        self.last_scene = Bed
+        self.last_scene = Scenes.Bed
 
     def play(self):
         print("-" * 50)
@@ -32,10 +33,7 @@ class Gameplay(object):
 
 
 
-protag = Characters.Protagonist('Michael')
-protag.live()
-
 new_game = Gameplay(Scenes.Bedroom)
 
-if __name__ == '__main__':
-    new_game.play()
+
+new_game.play()

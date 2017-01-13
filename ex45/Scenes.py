@@ -30,6 +30,7 @@ Scenes:
 
 import random
 from sys import exit
+from Characters import protag
 
 
 class Scene(object):

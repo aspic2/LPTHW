@@ -1,4 +1,4 @@
-
+import Scenes
 
 class Character(object):
     name = None
@@ -18,7 +18,7 @@ class Protagonist(Character):
         if self.health <= 0:
             self.isAlive = False
             print("That was the final blow. Your poor withered body couldn't take it.")
-            return Death.enter_scene()
+            return Scenes.Death.enter_scene()
         return None
 
     def change_health(self, change):
@@ -34,3 +34,7 @@ class Protagonist(Character):
     def change_points(self, points):
         self.points += points
         return self.points
+
+
+protag = Protagonist('Michael')
+protag.live()
