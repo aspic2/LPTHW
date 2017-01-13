@@ -32,42 +32,6 @@ import random
 from sys import exit
 
 
-class Character(object):
-    name = None
-    health = 100
-
-
-class Protagonist(Character):
-    def __init__(self, name):
-        self.points = 0
-        self.health = 50
-        self.name = name
-        self.isAlive = True
-        #name = input("What is your name?\n> ")
-        print("Hello, %s. You have been initialized." % self.name)
-
-    def live(self):
-        if self.health <= 0:
-            self.isAlive = False
-            print("That was the final blow. Your poor withered body couldn't take it.")
-            return Death.enter_scene()
-        return None
-
-    def change_health(self, change):
-        if self.health + change > 100:
-            self.health = 100
-        elif self.health + change <= 0:
-            self.health = 0
-        else:
-            self.health += change
-        print("%s, your health is now at %d" % (self.name, self.health))
-        return self.health
-
-    def change_points(self, points):
-        self.points += points
-        return self.points
-
-
 class Scene(object):
     def __init__(self):
         self.description = description
@@ -253,7 +217,7 @@ class Workplace(Scene):
             print("The boss comes by and sees you on Twitter.")
             print('\tB: Where\'s that report I asked you for, %s?' % protag.name)
             print("You are fired on the spot.", "At least now you get to leave...")
-            protag.change_health(-20)
+            protag.change_health(-30)
             protag.change_points(-10)
             protag.live()
             return PublicTrans.enter_scene()
@@ -328,40 +292,3 @@ class Away(Scene):
         print("Your first good decision all day.")
         print("Run away from your problems. Out of sight, out of mind, I always say.")
         return Bed.enter_scene()
-
-
-class GameMap(object):
-    scenes = {
-    'bed': Bed,
-    'bedroom': Bedroom,
-    'gym': Gym,
-    'home': Home,
-    'jail': Jail,
-    'death': Death,
-    'publictrans': PublicTrans,
-    'kitchen': Kitchen,
-    'quit': Quit,
-    'workplace': Workplace
-    }
-
-
-class Gameplay(object):
-    def __init__(self, first_scene):
-        self.first_scene = first_scene
-        self.last_scene = Bed
-
-    def play(self):
-        print("-" * 50)
-        print("ONE DAY AT A TIME")
-        current_scene = self.first_scene
-        final = self.last_scene
-        while current_scene != final:
-            current_scene = current_scene.enter_scene()
-
-
-
-protag = Protagonist('Michael')
-protag.live()
-
-new_game = Gameplay(Bedroom)
-new_game.play()
