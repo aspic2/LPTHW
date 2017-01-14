@@ -6,12 +6,13 @@ class Character(object):
 
 
 class Protagonist(Character):
-    def __init__(self, name):
+    def __init__(self):
         self.points = 0
         self.health = 50
-        self.name = name
         self.isAlive = True
-        #name = input("What is your name?\n> ")
+        self.name = input("What is your name, Player 1?\n> ")
+        if self.name == "":
+            self.name = "Player 1"
         print("Hello, %s. You have been initialized." % self.name)
 
     def live(self):
@@ -36,5 +37,5 @@ class Protagonist(Character):
         return self.points
 
 
-protag = Protagonist('Michael')
+protag = Protagonist()
 protag.live()

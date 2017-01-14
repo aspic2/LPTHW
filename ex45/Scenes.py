@@ -171,7 +171,7 @@ class PublicTrans(Scene):
             if 'gym' in decision:
                 return Gym.enter_scene()
             return Home.enter_scene()
-        print("\nIn comes an troublemaker, asking for money.")
+        print("\nIn comes a troublemaker, asking for money.")
         decision = input("What do you do: give money or ignore?\n> ")
         if 'give' in decision or 'money' in decision:
             print("That troublemaker thanks you, then pisses on your leg.", "Yuck!")
