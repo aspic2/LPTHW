@@ -63,16 +63,16 @@ class Home(Scene):
             print("Long day, huh? Why don't you get some rest?")
             next_step = input("Kitchen or Bed?\n> ").lower()
             if 'kitchen' in next_step:
-                Kitchen.enter_scene()
+                'kitchen'
             elif 'bed' in next_step:
-                Bed.enter_scene()
+                'bed'
         decision = input("Where to? Kitchen, Work, or back to bed?\n> ").lower()
         if "work" in decision or "out" in decision:
-            return Garage.enter_scene()
+            return 'garage'
         elif 'kitchen' in decision:
-            return Kitchen.enter_scene()
+            return 'kitchen'
         elif 'bed' in decision:
-            return Bed.enter_scene()
+            return 'bed'
         else:
             print("Invalid input.")
             Home.decision_time()
@@ -101,12 +101,12 @@ class Bedroom(Scene):
         if decision == 'y':
             print("Every day is a new adventure!\nThis adventure begins in the hallway\n")
             protag.change_points(10)
-            return Home.enter_scene()
+            return 'home'
         else:
             print("You stay in bed and avoid your problems.")
             print("It's a nice, safe choice, but also condemns you to mediocrity.")
             print("That's the prce to pay for comfort. As long as you're happy...")
-            return Death.enter_scene()
+            return 'death'
 
 
 class Kitchen(Scene):
@@ -124,7 +124,7 @@ class Kitchen(Scene):
             protag.change_points(10)
             protag.live()
             Kitchen.been_here = True
-        return Home.enter_scene()
+        return 'home'
 
 
 class Bed(Scene):
@@ -147,11 +147,11 @@ class Garage(Scene):
         print(Garage.description)
         if Garage.been_here:
             print("Welcome Home")
-            return Home.enter_scene()
+            return 'home'
         print("Time to head out!")
 
         Garage.been_here = True
-        return PublicTrans.enter_scene()
+        return 'publictrans'
 
 
 class PublicTrans(Scene):
@@ -169,8 +169,8 @@ class PublicTrans(Scene):
             print("What a day it has been!")
             decision = input("Want to head home or to the gym?\n> ")
             if 'gym' in decision:
-                return Gym.enter_scene()
-            return Home.enter_scene()
+                return 'gym'
+            return 'home'
         print("\nIn comes a troublemaker, asking for money.")
         decision = input("What do you do: give money or ignore?\n> ")
         if 'give' in decision or 'money' in decision:
@@ -185,11 +185,11 @@ class PublicTrans(Scene):
             protag.change_points(-10)
         else:
             print("Invalid input")
-            PublicTrans.enter_scene()
+            'publictrans'
         PublicTrans.been_here = True
         protag.live()
         protag.change_points(10)
-        return Workplace.enter_scene()
+        return 'workplace'
 
 
 class Workplace(Scene):
@@ -221,7 +221,7 @@ class Workplace(Scene):
             protag.change_health(-30)
             protag.change_points(-10)
             protag.live()
-            return PublicTrans.enter_scene()
+            return 'publictrans'
         d2 = input("Some nerd from accounting has some questions for you.\nDo you assist him or beat him up?\n> ")
         if 'assist' in d2:
             print("\n\nThe nerd thanks you for your help.")
@@ -230,11 +230,11 @@ class Workplace(Scene):
             protag.change_health(+20)
             protag.change_points(50)
             protag.live()
-            return PublicTrans.enter_scene()
+            return 'publictrans'
         elif 'beat' in d2:
             print("I hope that got some stress out of your system because you are going to jail.")
             protag.change_points(10)
-            return Jail.enter_scene()
+            return 'jail'
 
     #return Desk
     #return Lunchroom
@@ -262,9 +262,9 @@ class Gym(object):
             protag.live()
         d2 = input("Where to now?\nHome, Work, or just Away?\n> ").lower()
         if 'home' in d2:
-            return Home.enter_scene()
+            return 'home'
         elif 'work' in d2:
-            return Workplace.enter_scene()
+            return 'workplace'
         else:
             print("I didn't understand your input.")
             Gym.decision_time()
@@ -279,7 +279,7 @@ class Jail(Scene):
         '\n\tAnd his last words were "%s".' % lastwords)
         print('Rest in Power')
         protag.change_points(100)
-        return Death.enter_scene()
+        return 'death'
 
 
 class Quit(Scene):
@@ -292,4 +292,4 @@ class Away(Scene):
     def enter_scene():
         print("Your first good decision all day.")
         print("Run away from your problems. Out of sight, out of mind, I always say.")
-        return Bed.enter_scene()
+        return 'bed'

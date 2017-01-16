@@ -7,6 +7,7 @@ class GameMap(object):
     'away': Scenes.Away,
     'bed': Scenes.Bed,
     'bedroom': Scenes.Bedroom,
+    'garage': Scenes.Garage,
     'gym': Scenes.Gym,
     'home': Scenes.Home,
     'jail': Scenes.Jail,
@@ -19,7 +20,8 @@ class GameMap(object):
 
 
 class Gameplay(object):
-    def __init__(self, first_scene):
+    def __init__(self, sessionmap, first_scene):
+        self.sessionmap = sessionmap
         self.first_scene = first_scene
         self.last_scene = Scenes.Bed
 
@@ -29,11 +31,11 @@ class Gameplay(object):
         current_scene = self.first_scene
         final = self.last_scene
         while current_scene != final:
-            current_scene = current_scene.enter_scene()
+            current_scene = self.sessionmap.scenes[current_scene].enter_scene()
 
 
-
-new_game = Gameplay(Scenes.Bedroom)
+new_map = GameMap()
+new_game = Gameplay(new_map, 'bedroom')
 
 
 new_game.play()
