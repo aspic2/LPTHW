@@ -1,8 +1,8 @@
 #test functionality of parser
 
 from nose.tools import *
-from parser import *
-from ex49 import lexicon
+from ex49 import parser
+from ex49.lexicon import scan
 
 class TestSentence(object):
     def make_wordlist(sentence):
@@ -10,9 +10,9 @@ class TestSentence(object):
 
 testsentence = TestSentence.make_wordlist("Run north and kill the bear")
 
+
 def test_peek():
-    parser.peek.word_list = testsentence
-    print(parser.peek(word_list))
+    assert_equal(parser.peek(testsentence), testsentence[0])
 
 def test_match():
     pass
