@@ -8,6 +8,8 @@ class Room(object):
         self.name = name
         self.description = description
         self.paths = {}
+        self.decisions = None
+        self.beenhere = False
 
     def go(self, direction):
         return self.paths.get(direction, None)
