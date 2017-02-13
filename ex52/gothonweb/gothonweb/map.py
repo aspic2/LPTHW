@@ -1,3 +1,8 @@
+# Map of game Gothons from Planet Percal #25
+
+import random
+from sys import exit
+
 class Room(object):
     def __init__(self,name,description):
         self.name = name
@@ -106,7 +111,10 @@ escape_pod.add_paths({
     '*': the_end_loser
 })
 
-generic_death = Room("death", "You died.")
+death_quips = ["Such a loser", "You're not very good at this, are you?", \
+"Next time, try not to lose so quickly.", "Sucks, nerd!", "Were you even trying?"]
+
+generic_death = Room("death", "You died.\n" + random.choice(death_quips))
 
 the_bridge.add_paths({
     'throw the bomb': generic_death,
